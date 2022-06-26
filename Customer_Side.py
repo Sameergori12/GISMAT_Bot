@@ -293,6 +293,7 @@ def action(update: Update, context: CallbackContext):
                 # checkout the user with Online delivery  as order type
                 elif Order_type == 'Online':
                     startsession = False
+
                     if not len(Location) == 0:
                         car, order_amt = organize()
                         stir = f'Name: {update.effective_user.full_name} \n' \
