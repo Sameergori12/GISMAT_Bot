@@ -29,6 +29,7 @@ location_count = 0
 rest_lat, rest_long = 17.4299296940903, 78.41130927055349  # Restaurant coordinates
 user_latcord = ''
 user_longcord = ''
+
 # logger format
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
