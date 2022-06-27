@@ -596,6 +596,7 @@ def error(bot, update):
 def out_of_commands(update: Update, context: CallbackContext):
     update.message.reply_text("Try to communicate using the following commands with the Bot. "
                               "I cannot understand any other language besides the following commands")
+    help_commands(update, context)
 
 
 def main():

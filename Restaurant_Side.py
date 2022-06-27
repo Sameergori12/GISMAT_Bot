@@ -97,21 +97,30 @@ def action(update: Update, context: CallbackContext):
 
 
 # changing the price an item to zero to activate the scheme
-def price_change(update: Update, context: CallbackContext):
+def activateScheme(update: Update, context: CallbackContext):
     if update.message.from_user.id in admin_ids:
         change = update.effective_message.text
         edit = change[8:].strip()
-        if edit == 'default':
+        if edit == 'deactivate':
             shutil.copyfile('original_menuitems.txt', 'temp_menuitems.txt')
             # emptying the scheme list.
             with open("scheme_list.txt", 'w') as f:
                 f.truncate(0)
             f.close()
-            update.message.reply_text("Item Prices have been set to their default values")
+            update.message.reply_text("Scheme has been deactivated")
+        elif edit == "list":
+            # opening the scheme list
+            with open("scheme_list.txt", 'r', encoding='utf-8') as f:
+                feed_string = f.read()
+            if len(feed_string) == 0:
+                update.message.reply_text('Scheme Not Activated')
+            else:
+                # displaying the result in the Restaurant bot
+                update.message.reply_text("Item's list under the Scheme: \n \n" + feed_string)
         elif len(edit) == 0:
-            update.message.reply_text('There is not item for change. \n'
-                                      'Format: /change [exact item-name]\n'
-                                      'for example: /change Basbousa')
+            update.message.reply_text('There is nothing to put under scheme. \n'
+                                      'Format: /scheme [exact item-name]\n'
+                                      'for example: /scheme Basbousa')
         else:
             # to capitalize the first letter of each word of item.
             edit = edit.title()
@@ -137,7 +146,7 @@ def price_change(update: Update, context: CallbackContext):
                 for key, value in menu_items.items():
                     f.write('%s: %.2f\n' % (key, float(value)))
             f.close()
-            update.message.reply_text("Price changes have been made.")
+            update.message.reply_text("Item is under the scheme")
     else:
         update.message.reply_text("You are not authorized to access this Bot")
 
@@ -286,7 +295,7 @@ def main():
     # reacting to the commands - according to the commands
     dp.add_handler(CommandHandler('feedback', feedback))
     dp.add_handler(CommandHandler('menu', Menu))
-    dp.add_handler(CommandHandler('change', price_change))
+    dp.add_handler(CommandHandler('scheme', activateScheme))
     dp.add_handler(CommandHandler('maintenance', maintenance))
     dp.add_handler(CommandHandler('online', online))
     dp.add_handler(CommandHandler('unavailable', unavailable))
