@@ -70,8 +70,7 @@ def help_commands(update: Update, context: CallbackContext):
     if update.message.from_user.id in admin_ids:
         context.bot.send_message(chat_id=update.effective_chat.id,
                                  text="/menu - to check the current menu list with prizes\n"
-                                      "/change [item-name] - to activate the Try your Luck scheme(exact name - "
-                                      "nothing changed)\n "
+                                      "/scheme [item-name] - to activate the Try your Luck scheme(exact name)\n "
                                       "/show [YYYY-MM-DD] - to see the orders received on a particular date\n"
                                       "/maintenance - to set the bot to maintenance \n"
                                       "/online - to set the bot back online \n"

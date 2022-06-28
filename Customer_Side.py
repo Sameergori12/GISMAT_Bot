@@ -103,7 +103,7 @@ def menu_list(update: Update, context: CallbackContext):
 # returns weather the current time is open or close for orders
 def time_in_range(current):
     start = datetime.time(10, 0, 0)
-    end = datetime.time(22, 00, 0)
+    end = datetime.time(23, 00, 0)
     return start <= current <= end
 
 
@@ -409,7 +409,6 @@ def location(update: Update, context: CallbackContext):
         Location = locname.address
         context.bot.send_message(chat_id=update.effective_chat.id,
                                  text="Location confirmed")
-        print("location count: ", location_count)
         if location_count <= 1:
             random(update, context)
         else:
