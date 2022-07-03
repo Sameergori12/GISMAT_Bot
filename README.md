@@ -17,8 +17,6 @@ Telegram Bot username -  concise description
 @sidebot_bot - It helps you manage the customer side bot such as setting the unavailable items, bot under maintenance. 
 ## Installation
 
-Install my-project
-
 ```bash
   pip install python-telegram-bot
 ```
@@ -28,7 +26,7 @@ Install my-project
 
 versions: 
 
-I used python 3.8.
+python 3.8.
 
 python telegram bot 13.0
 
